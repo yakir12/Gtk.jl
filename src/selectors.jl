@@ -79,6 +79,7 @@ if libgtk_version >= v"3"     ### should work with v >= 2.4, but there is a bug 
         if !isempty(filters)
             makefilters!(dlgp, filters)
         end
+        yield()
         response = run(dlg)
         multiple = getproperty(dlg, :select_multiple, Bool)
         local selection
