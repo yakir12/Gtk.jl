@@ -174,8 +174,8 @@ end
 
 
 function show(io::IO, w::GObject)
-    const READABLE   = 0x00000001
-    const DEPRECATED = 0x80000000
+    READABLE   = 0x00000001
+    DEPRECATED = 0x80000000
     print(io, typeof(w), '(')
     if unsafe_convert(Ptr{GObject}, w) == C_NULL
         print(io, "<NULL>)")

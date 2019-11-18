@@ -88,10 +88,10 @@ function getindex{T}(a::MatrixStrided{T}, x::Index, y::Index)
     @assert(1 <= minimum(x) && maximum(x) <= width(a), "MatrixStrided: x index must be inbounds")
     @assert(1 <= minimum(y) && maximum(y) <= height(a), "MatrixStrided: y index must be inbounds")
     z = Matrix{T}(length(x), length(y))
-    const rs = a.rowstride
-    const st = sizeof(T)
-    const p = a.p
-    const lenx = length(x)
+    rs = a.rowstride
+    st = sizeof(T)
+    p = a.p
+    lenx = length(x)
     for zj = 1:length(y)
         j = (y[zj]-1) * rs
         for zi = 1:lenx
@@ -110,12 +110,12 @@ end
 function setindex!{T}(a::MatrixStrided{T}, z, x::Index, y::Index)
     @assert(1 <= minimum(x) && maximum(x) <= width(a), "MatrixStrided: x index must be inbounds")
     @assert(1 <= minimum(y) && maximum(y) <= height(a), "MatrixStrided: y index must be inbounds")
-    const rs = a.rowstride
-    const st = sizeof(T)
-    const p = a.p
-    const lenx = length(x)
+    rs = a.rowstride
+    st = sizeof(T)
+    p = a.p
+    lenx = length(x)
     if !isa(z, AbstractMatrix)
-        const elem = convert(T, z)::T
+        elem = convert(T, z)::T
         for zj = 1:length(y)
             j = (y[zj]-1) * rs + p
             for zi = 1:lenx
